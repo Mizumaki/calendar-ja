@@ -1,0 +1,18 @@
+{
+  "name": "calendar-ja",
+  "version": "1.0.0",
+  "description": "Japanese Calendar API easy to use.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "generateCalendar": "tsx scripts/generateCalendar.mts $npm_config_year"
+  },
+  "author": "Ryota Mizumaki",
+  "license": "ISC",
+  "dependencies": {
+    "tsx": "^4.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30"
+  }
+}
