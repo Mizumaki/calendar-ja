@@ -1,29 +1,18 @@
 import path from "path";
 import fs from "fs/promises";
 import { range } from "./utils/range";
+import { CalendarItem, Month, DayOfWeek } from "./type";
 
 const TARGET_YEAR = process.argv[2];
 if (!TARGET_YEAR) {
   throw new Error("Please pass TARGET_YEAR as argument");
 }
 
-type Month = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-type DayOfWeek = 0 | 1 | 2 | 3 | 4 | 5 | 6; // 0: Sunday, 1: Monday, ..., 6: Saturday
-type CalendarItem = {
-  year: number;
-  month: Month;
-  day: number;
-  dayOfWeek: DayOfWeek;
-  isLastDayOfMonth: boolean;
-} & (
-  | {
-      isNationalHoliday: false;
-    }
-  | {
-      isNationalHoliday: true;
-      nationalHolidayName: string;
-    }
-);
+type Calendar = {
+  [month in number]: {
+    [day in number]: CalendarItem;
+  };
+};
 
 const monthList: Month[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const getLastDayOfMonth = (targetYear: number, targetMonth: number) => {
@@ -85,48 +74,3 @@ const generateCalendar = async (targetYear: number): Promise<Calendar> => {
 
 const calendar = await generateCalendar(Number(TARGET_YEAR));
 process.stdout.write(JSON.stringify(calendar));
-
-type Calendar = {
-  [month in number]: {
-    [day in number]: CalendarItem;
-  };
-};
-
-// type Calendar = {
-//   1: {
-//     [day in string]: CalendarItem;
-//   };
-//   2: {
-//     [day in string]: CalendarItem;
-//   };
-//   3: {
-//     [day in string]: CalendarItem;
-//   };
-//   4: {
-//     [day in string]: CalendarItem;
-//   };
-//   5: {
-//     [day in string]: CalendarItem;
-//   };
-//   6: {
-//     [day in string]: CalendarItem;
-//   };
-//   7: {
-//     [day in string]: CalendarItem;
-//   };
-//   8: {
-//     [day in string]: CalendarItem;
-//   };
-//   9: {
-//     [day in string]: CalendarItem;
-//   };
-//   10: {
-//     [day in string]: CalendarItem;
-//   };
-//   11: {
-//     [day in string]: CalendarItem;
-//   };
-//   12: {
-//     [day in string]: CalendarItem;
-//   };
-// };

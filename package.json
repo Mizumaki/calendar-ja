@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "generateCalendar": "tsx scripts/generateCalendar.mts $npm_config_year"
+    "generateCalendar": "tsx scripts/generateCalendar.mts $npm_config_year",
+    "touchCalendarItemFiles": "tsx scripts/touchCalendarItemFiles.mts $npm_config_year"
   },
   "author": "Ryota Mizumaki",
   "license": "ISC",
