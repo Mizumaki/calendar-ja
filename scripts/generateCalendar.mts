@@ -30,7 +30,7 @@ const generateCalendar = async (targetYear: number): Promise<Calendar> => {
   const firstDayOfWeek = new Date(targetYear, 0, 1).getDay() as DayOfWeek;
   let currentDayOfWeek: DayOfWeek;
   const getNextDayOfWeek = () => {
-    if (!currentDayOfWeek) {
+    if (currentDayOfWeek === undefined) {
       currentDayOfWeek = firstDayOfWeek;
       return currentDayOfWeek;
     }
